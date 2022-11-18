@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 
 namespace AM.ApplicationCore.Interfaces
 {
-    public interface IServicePlane
+    public interface IServicePlane:IServices<Plane>
     {
-        void Add(Plane P);
+      /*  void Add(Plane P);
         void Remove(Plane P);
-        IEnumerable<Plane> GetAll();
+        IEnumerable<Plane> GetAll();*/
+      IEnumerable<Passenger> GetPasenger(Plane p);
+        IEnumerable<Flight> GetFlights(int n);
+         bool IsAvailablePlane(Flight flight, int n);
+        void DeletePlanes();
     }
 }

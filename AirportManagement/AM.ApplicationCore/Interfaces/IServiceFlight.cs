@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AM.ApplicationCore.Interfaces
 {
-    public interface IServiceFlight
+    public interface IServiceFlight:IServices<Flight>
     {
          IList<DateTime> GetFlightDates(string destination);
          void GetFlights(string filtertype, string filtervalue);
@@ -18,9 +18,9 @@ namespace AM.ApplicationCore.Interfaces
         IList<Flight> OrderedDurationFlights();
       //  IList<Traveller> SeniorTravellers(Flight flight);
         void DestinationGroupedFlights();
-        void Add(Flight flight);
+       /* void Add(Flight flight);
         void Remove(Flight flight);
-        IEnumerable<Flight> GetAll();
+        IEnumerable<Flight> GetAll();*/
 
     }
 }

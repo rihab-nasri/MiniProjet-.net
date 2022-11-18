@@ -36,7 +36,7 @@ pass1.PassengerType();
 st1.PassengerType();
 t1.PassengerType();
 
-ServiceFlight Sflight=new ServiceFlight();
+/*ServiceFlight Sflight=new ServiceFlight();
 Sflight.Flights = TestData.ListFlight;
 
 foreach (var item in Sflight.GetFlightDates2("Paris"))
@@ -58,13 +58,13 @@ Console.WriteLine("Les Top 3 Travellers");
 foreach (var f in Sflight.SeniorTravellers(TestData.f1))
 {
     Console.WriteLine(f);
-}*/
+}
 Console.WriteLine("Les vols par Destination  :");
 
 Sflight.DestinationGroupedFlights();
 Console.WriteLine(Sflight.DurationAverageDel("Paris"));
 Sflight.FlightDetailsDel(TestData.p1);
-
+*/
 AMContext context = new AMContext();//INSTANCACIATION DE CONTEXT POUR AJOUTER 
 context.Flights.Add(TestData.f3);//ajouter a la base 
 context.SaveChanges();

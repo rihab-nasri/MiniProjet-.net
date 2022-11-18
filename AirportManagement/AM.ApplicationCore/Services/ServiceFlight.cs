@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AM.ApplicationCore.Services
 {
-    public class ServiceFlight: IServiceFlight
+    public class ServiceFlight: Service<Flight>,IServiceFlight
     {
         public Action<Plane> FlightDetailsDel;
         public Func<string, double> DurationAverageDel;
@@ -147,30 +147,11 @@ namespace AM.ApplicationCore.Services
         IGenericRepository<Flight> genericRepository;
         private IUnitOfWork _unitOfWork;
 
-        public ServiceFlight(IUnitOfWork unitOfWor)
+        public ServiceFlight(IUnitOfWork unitOfWork): base(unitOfWork)
         {
 
-            this._unitOfWork = unitOfWor;
-
-        }
-        public void Add(Flight flight)
-        {
-            _unitOfWork.Repository<Flight>().Add(flight);
-        }
-
-        public void Remove(Flight flight)
-        {
-            _unitOfWork.Repository<Flight>().Delete(flight);
-        }
-
-        public IEnumerable<Flight> GetAll()
-        {
-            return  _unitOfWork.Repository<Flight>().GetAll();
-        }
-
-
-        public ServiceFlight()
-        {/*
+            this._unitOfWork = unitOfWork;
+            /*
             FlightDetailsDel = ShowFlifhtDetails;
             DurationAverageDel = DurationAverage;*/
             FlightDetailsDel = p =>
@@ -193,6 +174,23 @@ namespace AM.ApplicationCore.Services
             };
 
         }
+       /* public void Add(Flight flight)
+        {
+            _unitOfWork.Repository<Flight>().Add(flight);
+        }
+
+        public void Remove(Flight flight)
+        {
+            _unitOfWork.Repository<Flight>().Delete(flight);
+        }
+
+        public IEnumerable<Flight> GetAll()
+        {
+            return  _unitOfWork.Repository<Flight>().GetAll();
+        }*/
+
+
+       
 
 
     }

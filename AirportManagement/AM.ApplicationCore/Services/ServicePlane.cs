@@ -8,27 +8,51 @@ using System.Threading.Tasks;
 
 namespace AM.ApplicationCore.Services
 {
-    public class ServicePlane:IServicePlane
+    public class ServicePlane:Service<Plane>,IServicePlane
     {
-        private IUnitOfWork _unitOfWork;
+       // private IUnitOfWork _unitOfWork;
         IGenericRepository<Plane> genericRepository;
-        public ServicePlane(IUnitOfWork unitOfWork)
+        public ServicePlane(IUnitOfWork unitOfWork): base(unitOfWork)
         {
-            this._unitOfWork = unitOfWork;
-        }
-        public void Add(Plane P)
-        {
-            _unitOfWork.Repository<Plane>().Add(P);
+           // this._unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<Plane> GetAll()
+        public void DeletePlanes()
         {
-          return  _unitOfWork.Repository<Plane>().GetAll();
+            throw new NotImplementedException();
         }
 
-        public void Remove(Plane P)
+        public IEnumerable<Flight> GetFlights(int n)
         {
-            _unitOfWork.Repository<Plane>().Delete(P);
+            return GetAll().OrderByDescending(p => p.PlaneId).
+                Take(n).SelectMany(p => p.Flights).
+                OrderBy(f => f.Departure);
         }
+
+        public IEnumerable<Passenger> GetPasenger(Plane p)
+        {
+            return GetById(p.PlaneId).Flights.
+                SelectMany(f => f.TicketList).
+                Select(t => t.MyPassenger);
+        }
+
+        public bool IsAvailablePlane(Flight flight, int n)
+        {
+            throw new NotImplementedException();
+        }
+        /* public void Add(Plane P)
+            {
+                _unitOfWork.Repository<Plane>().Add(P);
+            }
+
+           public IEnumerable<Plane> GetAll()
+            {
+              return  _unitOfWork.Repository<Plane>().GetAll();
+            }
+
+           public void Remove(Plane P)
+            {
+                _unitOfWork.Repository<Plane>().Delete(P);
+            }*/
     }
 }
