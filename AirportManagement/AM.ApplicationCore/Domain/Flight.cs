@@ -17,7 +17,7 @@ namespace AM.ApplicationCore.Domain
         public int EstimatedDuration { get; set; }
         [ForeignKey("PlaneId")]
         public virtual Plane MyPlane { get; set; }
-        public string Airline { get; set; }
+        public string? Airline { get; set; }
         //[ForeignKey("MyPlane")]
         public int PlaneId { get; set; }
        // public ICollection<Passenger> PassengerList { get; set; }

@@ -10,25 +10,25 @@ namespace AM.ApplicationCore.Services
 {
     public class ServicePlane:IServicePlane
     {
+        private IUnitOfWork _unitOfWork;
         IGenericRepository<Plane> genericRepository;
-        public ServicePlane(IGenericRepository<Plane> genericRepository)
+        public ServicePlane(IUnitOfWork unitOfWork)
         {
-            this.genericRepository = genericRepository;
-
+            this._unitOfWork = unitOfWork;
         }
         public void Add(Plane P)
         {
-            genericRepository.Add(P);
+            _unitOfWork.Repository<Plane>().Add(P);
         }
 
         public IEnumerable<Plane> GetAll()
         {
-            return genericRepository.GetAll();
+          return  _unitOfWork.Repository<Plane>().GetAll();
         }
 
         public void Remove(Plane P)
         {
-            genericRepository.Delete(P);
+            _unitOfWork.Repository<Plane>().Delete(P);
         }
     }
 }

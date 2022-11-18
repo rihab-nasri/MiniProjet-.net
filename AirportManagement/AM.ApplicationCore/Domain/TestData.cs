@@ -146,6 +146,7 @@ namespace AM.ApplicationCore.Domain
             EffectiveArrival = new DateTime(2022, 03, 01),
             MyPlane = p1,
             EstimatedDuration = 100,
+            Airline="tunisair"
 
         };
         public static Flight f4 = new Flight
