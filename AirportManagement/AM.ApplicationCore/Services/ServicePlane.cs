@@ -19,7 +19,7 @@ namespace AM.ApplicationCore.Services
 
         public void DeletePlanes()
         {
-            throw new NotImplementedException();
+            Delete(p => DateTime.Now.Year - p.ManufactureDate.Year > 10);
         }
 
         public IEnumerable<Flight> GetFlights(int n)
@@ -38,7 +38,11 @@ namespace AM.ApplicationCore.Services
 
         public bool IsAvailablePlane(Flight flight, int n)
         {
-            throw new NotImplementedException();
+            int capacity;
+            capacity = Get(p => p.Flights.Contains(flight) == true).Capacity;
+            int nbrTicket;
+            nbrTicket = flight.TicketList.Count;
+            return capacity >= nbrTicket;
         }
         /* public void Add(Plane P)
             {
